@@ -1,0 +1,32 @@
+
+import csv
+
+input_file = open('RE.csv', 'r') 
+
+house_info = list(csv.DictReader(input_file))
+
+input_file.close()
+
+next = "y"
+
+while next != "n":
+
+    available_Places = 0
+
+    want_bedrooms = int(input("Enter number of bedrooms:"))
+    want_bathrooms = int(input("Enter number of bathrooms:"))
+
+    if want_bedrooms and want_bathrooms > 0 and want_bedrooms and want_bathrooms < 10:
+
+        for row in house_info:
+
+            has_bedrooms = int(row['beds'])
+            has_bathrooms = int(row['baths'])
+
+            if has_bedrooms >= want_bedrooms and has_bathrooms >= want_bathrooms:
+
+                homes_tuple =  row['city'], str(has_bedrooms), str(has_bathrooms)
+
+                print (homes_tuple)
+
+    next = input("another? (y or n): ")
